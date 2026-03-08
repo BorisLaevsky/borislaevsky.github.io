@@ -2,176 +2,168 @@
    BASE
 ====================== */
 
-body{
-margin:0;
-font-family:Georgia,serif;
-background:white;
-color:black;
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: white;
+  color: black;
 }
 
-img{
-max-width:100%;
-height:auto;
-display:block;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ======================
    CENTERED COLUMN
 ====================== */
 
-.group{
-display:none;
-margin:0 auto;
-max-width:620px;
-width:100%;
-padding:3rem 6vw;
-box-sizing:border-box;
-position:relative;
+.group {
+  display: none;
+  margin: 0 auto;
+  width: 90%;          /* relative width for scaling */
+  max-width: 900px;    /* grows on wider screens */
+  padding: 3rem 6vw;
+  box-sizing: border-box;
+  position: relative;   /* for beer counter inside */
 }
-.group.active{
-display:block;
+
+.group.active {
+  display: block;
 }
 
 /* ======================
    TEXT
 ====================== */
 
-p{
-line-height:1.6;
-font-size:1.05rem;
-margin:0 0 1rem 0;
+p {
+  line-height: 1.6;
+  font-size: 1.05rem;
+  margin: 0 0 1rem 0;
 }
 
-.dialogue{
-white-space:pre-line;
+.dialogue {
+  white-space: pre-line;
 }
 
 /* ======================
    IMAGES
 ====================== */
 
-.image-stack{
-position:relative;
-margin:2rem 0;
-width:100%;
-max-width:620px;
+.image-stack {
+  position: relative;
+  margin: 2rem 0;
+  width: 100%;
 }
 
 /* ascii overlay */
-
-.ascii{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-z-index:2;
-pointer-events:none;
-
-mix-blend-mode:multiply;
-opacity:0.9;
+.ascii {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 1;
 }
 
 /* real image */
-
-.real{
-position:relative;
-z-index:1;
+.real {
+  position: relative;
+  z-index: 1;
 }
 
 /* ======================
    CHOICES
 ====================== */
 
-.choices{
-margin-top:2rem;
-display:flex;
-flex-direction:column;
-gap:0.6rem;
+.choices {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
-.choices a{
-cursor:pointer;
-text-decoration:underline;
-font-size:0.95rem;
-color:black;
-width:fit-content;
+.choices a {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  color: black;
+  width: fit-content;
 }
 
-.choices a:hover{
-opacity:0.7;
+.choices a:hover {
+  opacity: 0.7;
 }
 
-.beer-button{
-margin-top:1.2rem;
-margin-bottom:0.6rem;
+.beer-button {
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 
 /* remove browser double underline */
-
-a{
-text-decoration:underline;
+a {
+  text-decoration: underline;
 }
 
 /* ======================
-   SCORE
+   SCORE (Beer counter)
 ====================== */
 
-#score{
-position:absolute;
-top:1rem;
-right:1rem;
-font-size:0.9rem;
-opacity:0.6;
+#score {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.6;
 }
+
 
 /* ======================
    OPENING PAGE
 ====================== */
 
-.opening-layout{
-display:flex;
-flex-direction:column;
-gap:2rem;
+.opening-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 /* window gif */
-
-.opening-gif{
-width:120px;
-max-width:30vw;
-align-self:flex-end;
-border:2px solid black;
+.opening-gif {
+  width: 120px;
+  max-width: 30vw;
+  align-self: flex-end;
+  border: 2px solid black;
 }
 
 /* ======================
    MOBILE
 ====================== */
 
-@media (max-width:600px){
+@media (max-width: 600px) {
 
-.group{
-padding:2rem 5vw;
+  .group {
+    padding: 2rem 5vw;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .choices a {
+    font-size: 1rem;
+  }
+
+  #score {
+    font-size: 0.8rem;
+  }
+
+  .opening-gif {
+    width: 90px;
+  }
+
 }
 
-p{
-font-size:1rem;
-}
-
-.choices a{
-font-size:1rem;
-}
-
-#score{
-font-size:0.8rem;
-}
-
-.opening-gif{
-width:90px;
-}
-
-}
-
-.beer-button{
-margin-top:1.2rem;
-margin-bottom:0.6rem;
-}

@@ -1,3 +1,6 @@
+/* =============================
+   BASE
+============================= */
 * {
   box-sizing: border-box;
 }
@@ -77,28 +80,48 @@ a {
   display: block;
 }
 
+/* =============================
+   WORKS
+============================= */
 .panel.works {
-  max-width: 820px;
+  max-width: 820px;       /* archival drawer width */
+  margin: 0 auto;         /* center by default on mobile */
+  padding-left: 0;        /* no extra padding on mobile */
 }
 
-/* works */
 .work {
   margin-bottom: 56px;
 }
 
+/* images */
 .work img {
-  max-width: 680px;
   width: 100%;
+  max-width: 680px;       /* original size on mobile & laptops */
   display: block;
   margin-bottom: 8px;
 }
 
+/* meta info */
 .meta {
   font-size: 12px;
   line-height: 1.35;
 }
 
-/* cv */
+/* scale and lean images on larger screens */
+@media (min-width: 992px) {   /* apply only on wide screens */
+  .panel.works {
+    margin-left: 0;           /* lean left */
+    padding-left: 16px;       /* small space from menu */
+  }
+
+  .work img {
+    max-width: 80vw;          /* grow proportionally on very wide screens */
+  }
+}
+
+/* =============================
+   CV
+============================= */
 #cv {
   max-width: 520px;
 }
@@ -126,7 +149,9 @@ a {
   opacity: 0.6;
 }
 
-/* mobile */
+/* =============================
+   MOBILE
+============================= */
 @media (max-width: 768px) {
   body {
     font-size: 12px;
@@ -148,7 +173,6 @@ a {
 /* =============================
    CHAT
 ============================= */
-
 .chat-container {
   max-width: 520px;
 }
@@ -186,6 +210,19 @@ a {
   padding: 4px 8px;
   font-size: 12px;
   cursor: pointer;
+}
+
+/* chat form for mobile */
+@media (max-width: 520px) {
+  .chat-form {
+    flex-direction: column; /* stack inputs vertically */
+    gap: 6px;
+  }
+
+  .chat-form input,
+  .chat-form button {
+    width: 100%;
+  }
 }
 
 /* optional: add spacing in menu for visual separation */
