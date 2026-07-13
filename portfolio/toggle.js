@@ -29,37 +29,59 @@ const chatMessages = document.getElementById('messages');
 
 async function fetchMessages() {
   try {
+    // Check whether the user is already near the bottom
+    const firstLoad = chatMessages.children.length === 0;
+    const wasNearBottom =
+      chatMessages.scrollHeight -
+      chatMessages.scrollTop -
+      chatMessages.clientHeight < 100;
+
     const res = await fetch('https://simple-chat-backend-5ypk.onrender.com/messages');
     const data = await res.json();
-    chatMessages.innerHTML = data.map(msg => 
-      `<div class="message"><span class="name">${msg.name}:</span> ${msg.message}</div>`
-    ).join('');
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  } catch(err) {
+
+    chatMessages.innerHTML = data
+      .map(
+        msg =>
+          `<div class="message"><span class="name">${msg.name}:</span> ${msg.message}</div>`
+      )
+      .join('');
+
+    // Only auto-scroll on first load or if user was already at the bottom
+    if (firstLoad || wasNearBottom) {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  } catch (err) {
     console.error(err);
   }
 }
 
-// fetch messages every 3 seconds
+// Fetch messages every 3 seconds
 setInterval(fetchMessages, 3000);
 fetchMessages();
 
-// handle form submit
+// Handle form submit
 chatForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   const name = document.getElementById('chat-name').value.trim();
   const message = document.getElementById('chat-text').value.trim();
+
   if (!name || !message) return;
 
   try {
     await fetch('https://simple-chat-backend-5ypk.onrender.com/message', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ name, message })
     });
+
     document.getElementById('chat-text').value = '';
-    fetchMessages(); // refresh immediately
-  } catch(err) {
+
+    // Refresh immediately after sending
+    fetchMessages();
+  } catch (err) {
     console.error(err);
   }
 });
